@@ -26,7 +26,7 @@ const MyProfile = ({ data }: Props): ReactElement => {
   return (
     <div>
       <UserID id={id} />
-      <UserNickname username={username} />
+      <UserNickname id={id} username={username} />
       <UserAvatar avatar_url={avatar_url} />
       <UserWebsite website={website} />
     </div>

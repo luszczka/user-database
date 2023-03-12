@@ -2,7 +2,7 @@ import { type ReactElement, type HTMLProps, type ChangeEvent } from 'react';
 
 interface Props extends HTMLProps<HTMLInputElement> {
   onChange: (inputValue: ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
+  placeholder?: string;
   value: string;
 }
 

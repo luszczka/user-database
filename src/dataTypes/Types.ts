@@ -5,11 +5,14 @@ export interface UseUserDataType {
 }
 
 export interface ProfileData {
-  avatar_url: string;
   id: string;
+  avatar_url: string;
+  country: string;
+  name: string;
+  phone: number;
+  surname: string;
   username: string;
   website: string;
-  full_name: string;
 }
 
 export interface ResponseDataType {

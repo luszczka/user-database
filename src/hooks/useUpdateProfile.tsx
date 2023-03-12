@@ -1,19 +1,30 @@
+import { useState } from 'react';
 import { supabase } from '../client';
+import { arrToObj } from '../utils/arrToObj';
+import { setProfileValues } from '../utils/setProfileValues';
 
 interface Props {
   id: string;
-  value: string | number;
+  userPropName: string;
+  value: string;
 }
 
-const useUpdateProfile = ({ id, value }: Props): any => {
+const useUpdateProfile = ({ id, userPropName, value }: Props): any => {
+  const [isLoading, setIsLoading] = useState(false);
+  const combinePropNameAndValue = arrToObj([userPropName, value]);
+  const passedProfileValue = setProfileValues(combinePropNameAndValue);
+
   const updateProfile = async (): Promise<void> => {
-    const { error } = await supabase
-      .from('profiles')
-      .update({ username: `${value}` })
-      .eq('id', id);
+    setIsLoading(true);
+    try {
+      await supabase.from('profiles').update(passedProfileValue).eq('id', id);
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
   };
 
-  return { updateProfile };
+  return { updateProfile, isLoading };
 };
 
 export default useUpdateProfile;

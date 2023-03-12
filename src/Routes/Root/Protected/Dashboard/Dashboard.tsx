@@ -17,6 +17,10 @@ const Dashboard = (): ReactElement => {
     setIsDataShowed(!isDataShowed);
   };
 
+  const updateProfileData = (): void => {
+    getProfiles();
+  };
+
   return (
     <div>
       <div>Dashboard</div>
@@ -35,7 +39,7 @@ const Dashboard = (): ReactElement => {
       </div>
       {isDataShowed && (
         <div>
-          <MyProfile data={data} />
+          <MyProfile data={data} updateProfileData={updateProfileData} />
         </div>
       )}
     </div>
